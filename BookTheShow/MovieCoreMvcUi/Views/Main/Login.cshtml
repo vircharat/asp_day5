@@ -1,0 +1,50 @@
+﻿@model BookTheShowEntity.Userv
+@*//this name should be the name of projects under dependencies after adding referrences in MvcUi*@
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+<html>
+    <head>
+        <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    </head>
+    <body>
+    <form method="post" enctype="multipart/form-data">
+        <h2>User Login</h2>
+
+        <div class="form-group">
+            <label>User Email</label>
+            <input type="text" asp-for="UservEmail" class="form-control" placeholder="Enter User Email" required />
+        </div>
+        <div class="form-group">
+            <label>User Password</label>
+            <input type="text" asp-for="UserPassword" class="form-control" placeholder="Enter User Password" required />
+        </div>
+        <input type="submit" value="Login" class="btn btn-outline-success" /> @*submit display message for required option required works only with submit*@
+        <input type="button" value="Reset" class="btn btn-outline-secondary" />
+        <hr />
+        @*submit sends form to server thats why we use submit not button type  *@
+        @*   by default get request is called so we have mention post in the initial stage of form which will call httppost in Usercontroller *@
+        @if (ViewBag.status == "Ok")
+        {
+            <div class="alert alert-success">
+                @ViewBag.message
+            </div>
+        }
+        else if (ViewBag.status == "Error")
+        {
+            <div class="alert alert-danger">
+                @ViewBag.message
+            </div>
+        }
+    </form>
+
+    </body>
+</html>
+
